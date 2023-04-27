@@ -1,0 +1,20 @@
+:root {
+	--color-background: #B6D3D3;
+	--color-foreground: #000000;
+
+	--color-button-choose-task: var(var(--color-foreground));
+	--color-button-task: #34568B;
+	--color-button-font: #FFFFFF;
+
+	--font-size-button: 1rem;
+	--font-size-foreground: 1.5rem;
+
+	--gap-column: 1rem;
+	--gap-padding: 1rem;
+	--gap-row: 1rem;
+	--gap-section: 2rem;
+
+	--gap-box-padding: 1rem;
+	--gap-button-padding: 0.5rem;
+
+}
