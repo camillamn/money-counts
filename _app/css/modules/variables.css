@@ -1,0 +1,12 @@
+:root {
+	--color-background: #B6D3D3;
+	--color-foreground: #000000;
+
+	--color-button-choose-task: var(var(--color-foreground));
+	--color-button-task: #34568B;
+	--color-button-font: #FFFFFF;
+
+	--font-size-button: 1rem;
+	--font-size-foreground: 1.5rem;
+
+}
