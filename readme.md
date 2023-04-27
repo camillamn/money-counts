@@ -5,7 +5,7 @@ This repository contains an application where the kids can choose the tasks they
 The MVP is to make an application where one user can add the performed tasks during a week to a list, and send the list to Sanity, so I can keep track on how much pocketmoney i should pay my kid.
 
 ## Deployment
-The project is deployed on [Netlify]() and the source code can be found on [Github](https://github.com/camillamn/money-counts).
+The project is deployed on [Netlify](https://money-counts.netlify.app/) and the source code can be found on [Github](https://github.com/camillamn/money-counts).
 CMS is made in [Sanity]().
 
 ## Built with
