@@ -17,6 +17,18 @@ export default {
 			}
 		},
 		{
+			title: 'Username',
+			name: 'username',
+			type: 'string',
+			validation: (Rule) => Rule.required(),
+		},
+		{
+			title: 'Password',
+			name: 'password',
+			type: 'string',
+			validation: (Rule) => Rule.required(),
+		},
+		{
 			title: 'Role',
 			name: 'role',
 			type: 'string',
@@ -26,6 +38,18 @@ export default {
 			name: 'avatar',
 			type: 'image',
 		},
+	],
+	preview: {
+		select: {
+			username: 'username',
+			avatar: 'avatar',
+		},
 
-	]
+		prepare: (fields) => {
+			return {
+				title: fields.username,
+				media: fields.avatar,
+			}
+		},
+	},
 }
