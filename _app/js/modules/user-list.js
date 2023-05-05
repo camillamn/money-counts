@@ -1,6 +1,6 @@
 import { sanity } from '../sanity.js';
 
-export default async function UserList () {
+export default async function UserList() {
 
    const query = `*[_type == 'user'] | order(name asc) {
       username,
