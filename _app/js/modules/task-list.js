@@ -1,6 +1,6 @@
 import { sanity } from '../sanity.js';
 
-export default async function TaskList () {
+export default async function TaskList() {
    const query = `*[_type == 'task'] | order(name asc) {
       name,
       value
