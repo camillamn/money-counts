@@ -4,4 +4,5 @@
 @import 'fonts.css';
 @import 'base.css';
 
+@import 'modules/box.css';
 @import 'modules/main-header.css';
