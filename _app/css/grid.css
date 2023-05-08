@@ -1,4 +1,4 @@
-/* Grid template borrowed from Specsavers demo from class */
+/* Grid template from teachers example Spacsavers */
 
 .grid {
 	width: 100%;
@@ -9,6 +9,7 @@
 	row-gap: var(--gap-row);
 }
 
+/* mobile first */
 @media screen and (max-width: 1024px) {
 	.grid__column--1 ,
 	.grid__column--2 ,
@@ -74,6 +75,7 @@
 	}
 }
 
+/* desktop */
 @media screen and (min-width: 1024px) {
 	.grid__column--1 {
 		grid-column-end: span 1;
