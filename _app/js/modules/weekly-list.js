@@ -17,5 +17,5 @@ export default async function WeeklyList() {
 	// fetch weekly-lists sorted by weekNumber from sanity
 	const weeklyPerformedTasksLists = await sanity.fetch(query);
 
-	console.log(weeklyPerformedTasksLists)
+	// console.log(weeklyPerformedTasksLists)
 }
