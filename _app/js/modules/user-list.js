@@ -44,7 +44,7 @@ export default async function UserList() {
 			userImg.src = user.userAvatar;
 			userImg.alt = user.userAlt;
 
-			userInformation.className = 'frontpage-users__user-information';
+			userInformation.className = 'frontpage-users__user-information box';
 			userName.className = 'frontpage-users__user-name';
 			userName.innerText = user.username
 			// userEarning.className = 'frontpage-users__user-earning';

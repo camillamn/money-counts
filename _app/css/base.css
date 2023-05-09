@@ -1,4 +1,19 @@
 body {
 	font-family: var(--font-family-main);
 	text-transform: uppercase;
+	background-color: var(--color-background);
+}
+
+@media screen and (max-width: 1024px) {
+	body {
+		font-size: 100%;
+	}
+}
+
+@media screen and (min-width: 1920px) {
+	body {
+		font-size: 120%;
+		max-width: 1920px;
+		margin: 0 auto;
+	}
 }

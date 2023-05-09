@@ -1,12 +1,19 @@
 .frontpage-users {
 	margin-bottom: var(--gap-row);
+	justify-content: space-between;
 }
 
 .frontpage-users__user-information {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: center;
+	font-size: var(--font-size-foreground);
 }
+
+.frontpage-users__user:hover {
+	border: 2px solid black;
+}
+
 .frontpage-users__user-image {
 	aspect-ratio: 3/4;
 }
