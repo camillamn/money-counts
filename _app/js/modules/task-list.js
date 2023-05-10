@@ -1,13 +1,7 @@
-import { sanity } from '../sanity.js';
+import FetchTasks from "./fetch-tasks.js";
 
 export default async function TaskList() {
-   const query = `*[_type == 'task'] | order(name asc) {
-      name,
-      value
-   }`;
+	const tasks = await FetchTasks();
 
-   // fetch tasks from the sanity database using query
-   const tasks = await sanity.fetch(query);
-
-   // console.log(tasks)
+	console.log(tasks);
 }

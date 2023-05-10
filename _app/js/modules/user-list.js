@@ -1,22 +1,12 @@
-import { sanity } from '../sanity.js';
+import FetchUsers from './fetch-users.js';
 
 export default async function UserList() {
-	// choose where to put the data from sanity
-	const userListContainer = document.querySelector('.frontpage-users');
-	
-   const query = `*[_type == 'user' && role == 'user'] | order(name asc) {
-		username,
-		slug,
-      role,
-      "userAvatar": avatar.asset->url,
-      "userAlt": name
-   }`;
-	
-   // fetch users from the sanity database using query
-   const users = await sanity.fetch(query);
-   console.log(users)
+
+	// fetch the users
+	const users = await FetchUsers();
 	
 	function createUserItemDOM() {
+		const userListContainer = document.querySelector('.frontpage-users');
 
 		for (const user of users) {
 			const userItem = document.createElement('div');
@@ -51,7 +41,7 @@ export default async function UserList() {
 			// userEarning.innerText = `NOK`
 
 			userLink.className = 'frontpage-users__user-choose-me';
-			userLink.href = `/user-page/${user.slug}.html`;
+			userLink.href = `/static-user-page/index.html`;
 			userLink.textContent = 'View user';
 
 			userLink.addEventListener('click', (event) => {

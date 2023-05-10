@@ -1,34 +1,36 @@
-import { sanity } from '../sanity.js';
+// import { sanity } from '../sanity.js';
+import FetchWeeklyList from './fetch-weekly-lists.js';
 
-export default async function WeeklyList(user) {
-	const query = `*[_type == 'weeklyList'] | order(weekNumber asc){
-		weekNumber,
-		"user": user->{username},
-		 "userAvatar": user->avatar.asset->url,
-		 tasks[]{
-			date,
-			 "task": task->{
-				 name,
-			  	value
-			}
-		 }
-	  }`;
+export default async function WeeklyList() {
 
-	// fetch weekly-lists sorted by weekNumber from sanity
-	const weeklyPerformedTasksLists = await sanity.fetch(query);
+	const weeklyListOfPerformedTasks = await FetchWeeklyList('user');
+const weeklyListContainer = document.querySelector('.weekly-list__container');
 
-	console.log(weeklyPerformedTasksLists)
-
-	const weeklyListContainer = document.createElement('div');
-
-	for (const weeklyPerformedTasksList of weeklyPerformedTasksLists) {
+	for (const weeklyListOfPerformedTask of weeklyListOfPerformedTasks) {
 
 		const weekNumber = document.createElement('h3');
-		weekNumber.textContent = `Week ${weeklyPerformedTasksList.weekNumber}`;
+		weekNumber.textContent = `Week ${weeklyListOfPerformedTask.weekNumber}`;
+
+		const userAvatar = weeklyListOfPerformedTask.userAvatar;
+		const userName = weeklyListOfPerformedTask.user.username;
+		
+		const userInfo = document.createElement('div');
+		userInfo.classList.add('user-info');
+
+		const userAvatarImg = document.createElement('img');
+		userAvatarImg.src = userAvatar;
+
+		const userNameSpan = document.createElement('span');
+		userNameSpan.textContent = `User: ${userName}`;
+
+		userInfo.appendChild(userAvatarImg);
+		userInfo.appendChild(userNameSpan);
+		weeklyListContainer.appendChild(userInfo);
+
 
 		const tasksList = document.createElement('ul');
 
-		for (const task of weeklyPerformedTasksList.tasks) {
+		for (const task of weeklyListOfPerformedTask.tasks) {
 			
 			const taskListItem = document.createElement('li');
 			
