@@ -25,14 +25,14 @@ export default async function UserList() {
 			const userInformation = document.createElement('div');
 			const userName = document.createElement('div');
 			// const userEarning = document.createElement('div');
-			const userButton = document.createElement('button');
+			const userLink = document.createElement('a');
 
 			userItem.className = 'frontpage-users__user box grid__column--4';
 			userListContainer.appendChild(userItem);
 
 			userItem.appendChild(userImage);
 			userItem.appendChild(userInformation);
-			userItem.appendChild(userButton);
+			userItem.appendChild(userLink);
 
 			userImage.appendChild(userImg);
 
@@ -50,7 +50,14 @@ export default async function UserList() {
 			// userEarning.className = 'frontpage-users__user-earning';
 			// userEarning.innerText = `NOK`
 
-			userButton.className = 'frontpage-users__user-choose-me';
+			userLink.className = 'frontpage-users__user-choose-me';
+			userLink.href = `/user-page/${user.slug}.html`;
+			userLink.textContent = 'View user';
+
+			userLink.addEventListener('click', (event) => {
+				event.preventDefault();
+				window.location.href = userLink.href;
+			});
 
 		}
 		return userListContainer;
