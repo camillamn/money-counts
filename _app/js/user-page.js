@@ -1,3 +1,3 @@
-import StaticUserPage from "./modules/static-user-page.js";
+import WeeklyList from "./modules/weekly-list.js";
 
-await StaticUserPage();
+await WeeklyList();
