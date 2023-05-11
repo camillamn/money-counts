@@ -1,0 +1,30 @@
+.static-page-users {
+	margin-bottom: var(--gap-row);
+	justify-content: space-between;
+	background-color: var(--color-button-task);
+	
+}
+
+.static-page-users__user-information {
+	background-color: grey;
+	/* display: flex;
+	flex-direction: row;
+	justify-content: center; */
+}
+
+.static-page-users__user-name {
+	background-color: blue;
+}
+
+.static-page-users__user-image {
+	aspect-ratio: 3/4;
+}
+
+.static-page-users__user-img {
+	object-fit: cover;
+	height: 100%;
+}
+
+.static-page-users__week-list {
+	
+}
