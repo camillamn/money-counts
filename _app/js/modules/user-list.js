@@ -14,10 +14,26 @@ export default async function UserList() {
 			const userImg = document.createElement('img');
 			const userInformation = document.createElement('div');
 			const userName = document.createElement('div');
-			// const userEarning = document.createElement('div');
 			const userLink = document.createElement('a');
+			// const userEarning = document.createElement('div');
 
 			userItem.className = 'frontpage-users__user box grid__column--4';
+			
+			userImage.className = 'frontpage-users__user-image';
+			userImg.className = 'frontpage-users__user-img';
+			userImg.src = user.userAvatar;
+			userImg.alt = user.userAlt;
+			
+			userInformation.className = 'frontpage-users__user-information box';
+			userName.className = 'frontpage-users__user-name';
+			userName.innerText = user.username
+			// userEarning.className = 'frontpage-users__user-earning';
+			// userEarning.innerText = `NOK`
+			
+			userLink.className = 'frontpage-users__user-choose-me';
+			userLink.href = `/static-user-page/index.html`;
+			userLink.textContent = 'View user';
+			
 			userListContainer.appendChild(userItem);
 
 			userItem.appendChild(userImage);
@@ -28,21 +44,6 @@ export default async function UserList() {
 
 			userInformation.appendChild(userName);
 			// userInformation.appendChild(userEarning);
-
-			userImage.className = 'frontpage-users__user-image';
-			userImg.className = 'frontpage-users__user-img';
-			userImg.src = user.userAvatar;
-			userImg.alt = user.userAlt;
-
-			userInformation.className = 'frontpage-users__user-information box';
-			userName.className = 'frontpage-users__user-name';
-			userName.innerText = user.username
-			// userEarning.className = 'frontpage-users__user-earning';
-			// userEarning.innerText = `NOK`
-
-			userLink.className = 'frontpage-users__user-choose-me';
-			userLink.href = `/static-user-page/index.html`;
-			userLink.textContent = 'View user';
 
 			userLink.addEventListener('click', (event) => {
 				event.preventDefault();
