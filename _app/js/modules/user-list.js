@@ -31,7 +31,7 @@ export default async function UserList() {
 			// userEarning.innerText = `NOK`
 			
 			userLink.className = 'frontpage-users__user-choose-me';
-			userLink.href = `/static-user-page/index.html`;
+			userLink.href = `/static-user-page-${user.slug.current}/index.html`;
 			userLink.textContent = 'View user';
 			
 			userListContainer.appendChild(userItem);
@@ -60,5 +60,4 @@ export default async function UserList() {
 	}
 
 	renderHTML();
-
 }
