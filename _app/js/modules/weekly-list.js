@@ -3,6 +3,7 @@
 */
 
 import FetchWeeklyList from './fetch-weekly-lists.js';
+import { sumEarnings } from './calculate-earnings.js';
 
 export default async function WeeklyList() {
 
@@ -11,6 +12,7 @@ export default async function WeeklyList() {
 
 	let currentUser = '';
 	let weekList = null;
+	let totalEarnings = 0;
 
 	for (const weeklyListOfPerformedTask of weeklyListOfPerformedTasks) {
 		if (currentUser !== weeklyListOfPerformedTask.user.username) {
@@ -27,8 +29,8 @@ export default async function WeeklyList() {
 			userImage.className = 'static-page-users__user-image';
 			userImg.className = 'static-page-users__user-img';
 			
-			userName.className = 'static-page-users__user-name box';
-			weekList.className = 'static-page-users__week-list box';
+			userName.className = 'static-page-users__user-name grid__column--12 box';
+			weekList.className = 'static-page-users__week-list';
 
 			userName.innerText = weeklyListOfPerformedTask.user.username;
 			userImg.src = weeklyListOfPerformedTask.userAvatar;
@@ -43,14 +45,22 @@ export default async function WeeklyList() {
 
 		const weekNumber = document.createElement('li');
 		const tasksList = document.createElement('ul');
+		const earningsItem = document.createElement('div');
 
-		weekNumber.className = 'static-page-users__week-number box';
+		const earnings = sumEarnings(weeklyListOfPerformedTask.tasks);
+		console.log(typeof earnings, earnings);
+		totalEarnings += earnings;
+
+		weekNumber.className = 'static-page-users__week-number grid__column--12 box';
 		tasksList.className = 'static-page-users__tasks-list';
-
+		earningsItem.className = 'static-page-users__earnings box';
+		
 		weekNumber.textContent = `Week ${weeklyListOfPerformedTask.weekNumber}`;
-
+		earningsItem.textContent = `Total earning this week: ${earnings.toString()}`;
+		
 		weekList.appendChild(weekNumber);
-
+		weekList.appendChild(earningsItem);
+		
 		for (const task of weeklyListOfPerformedTask.tasks) {
 			
 			const taskListItem = document.createElement('li');
@@ -59,9 +69,9 @@ export default async function WeeklyList() {
 			const taskValue = document.createElement('div');
 			
 			taskListItem.className = 'static-page-users__tasks-list-item grid';
-			taskDate.className = 'static-page-users__task-date grid__column--4';
-			taskName.className = 'static-page-users__task-name grid__column--6';
-			taskValue.className = 'static-page-users__task-value grid__column--2';
+			taskDate.className = 'static-page-users__task-date grid__column--3';
+			taskName.className = 'static-page-users__task-name grid__column--8';
+			taskValue.className = 'static-page-users__task-value grid__column--1';
 			
 			taskName.textContent = task.task.name;
 			taskDate.textContent = task.date;
@@ -75,5 +85,11 @@ export default async function WeeklyList() {
 		
 		weekNumber.appendChild(tasksList);
 	}
+	// total earnings
+	const totalEarningsItem = document.createElement('div');
+	totalEarningsItem.className = 'static-page-users__total-earnings grid__column--12 box';
+	totalEarningsItem.textContent = `Total earnings: ${totalEarnings}`;
+	weeklyListContainer.appendChild(totalEarningsItem);
+
 	return weeklyListContainer;
 }
