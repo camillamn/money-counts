@@ -26,5 +26,22 @@
 }
 
 .static-page-users__week-list {
-	
+	background-color: bisque;
+}
+
+.static-page-users__week-number {
+	font-weight: 600;
+}
+
+.static-page-users__earnings {
+	font-size: 0.95rem;
+	padding-top: 0;
+}
+
+.static-page-users__tasks-list-item {
+	font-size: 0.9rem;
+}
+
+.static-page-users__task-value {
+	font-weight: 600;
 }
