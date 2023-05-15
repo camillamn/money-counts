@@ -4,6 +4,7 @@ export default async function FetchWeeklyList() {
 	const query = `*[_type == 'weeklyList'] | order(weekNumber asc){
 		weekNumber,
 		"user": user->{username},
+		"slug": user->slug.current,
 		"userAvatar": user->avatar.asset->url,
 		 tasks[]{
 			date,
