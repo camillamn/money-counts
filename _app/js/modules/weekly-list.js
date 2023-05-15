@@ -1,24 +1,34 @@
 /** 
  * @TODO - need to fetch userAlt as well
+ *  - change button to div, because its not allowed to have a a and button together
 */
 
 import FetchWeeklyList from './fetch-weekly-lists.js';
 import { sumEarnings } from './calculate-earnings.js';
+import { readSlug } from '../util/read-slug.js';
 
 export default async function WeeklyList() {
 
+	const slug = readSlug();
+	console.log(slug);
 	const weeklyListOfPerformedTasks = await FetchWeeklyList();
+	const filteredWeeklyList = weeklyListOfPerformedTasks.filter(task => task.user.username === slug);
+	
+	if (!filteredWeeklyList.length) {
+		return null;
+	}
+
 	const weeklyListContainer = document.querySelector('.static-page-users');
 
 	let currentUser = '';
 	let weekList = null;
 	let totalEarnings = 0;
 
-	for (const weeklyListOfPerformedTask of weeklyListOfPerformedTasks) {
+	for (const weeklyListOfPerformedTask of filteredWeeklyList) {
 		if (currentUser !== weeklyListOfPerformedTask.user.username) {
 			currentUser = weeklyListOfPerformedTask.user.username;
 
-			const userInfo = document.createElement('div');
+			const userInfo = document.createElement('a');
 			const userImage = document.createElement('figure');
 			const userImg = document.createElement('img');
 			const userName = document.createElement('div');
