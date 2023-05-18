@@ -1,7 +1,7 @@
 import { sanity } from '../sanity.js';
 
 export default async function FetchWeeklyList() {
-	const query = `*[_type == 'weeklyList'] | order(weekNumber asc){
+	const query = `*[_type == 'weeklyList'] | order(weekNumber asc, tasks.date asc) {
 		weekNumber,
 		"user": user->{username},
 		"slug": user->slug.current,
@@ -12,13 +12,13 @@ export default async function FetchWeeklyList() {
 				 name,
 			  	value
 			}
-		 }
+		 } | order(date asc)
 	  }`;
 
 	// fetch weekly-lists sorted by weekNumber from sanity
 	const weeklyListOfPerformedTasks = await sanity.fetch(query);
 
-	console.log(weeklyListOfPerformedTasks)
+	// console.log(weeklyListOfPerformedTasks)
 
 	return weeklyListOfPerformedTasks;
 }
