@@ -32,7 +32,7 @@ export default async function UserList() {
 			
 			userLink.className = 'frontpage-users__user-choose-me';
 			userLink.setAttribute('href', `/kids/?${user.slug.current}`);
-			userLink.textContent = 'View user';
+			userLink.textContent = 'Velg meg';
 			
 			userListContainer.appendChild(userItem);
 
