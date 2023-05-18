@@ -1,3 +1,5 @@
+import { getWeekNumber } from "../utils.js";
+
 export default {
 	title: 'Weekly list',
 	name: 'weeklyList',
@@ -11,11 +13,13 @@ export default {
 		 validation: (Rule) => Rule.required(),
 	  },
 	  {
-		 title: 'Week number',
-		 name: 'weekNumber',
-		 type: 'number',
-		 validation: Rule => Rule.required().min(1).max(53),
-	  },
+		title: 'Week number',
+		name: 'weekNumber',
+		type: 'number',
+		initialValue: () => ({
+			weekNumber: getWeekNumber(new Date()),
+		 }),
+	 },
 	  {
 		 title: 'Tasks',
 		 name: 'tasks',
@@ -35,10 +39,20 @@ export default {
 					name: 'date',
 					type: 'date',
 					options: {
-					  dateFormat: 'DD-MM-YYYY',
+					  dateFormat: 'DD-MMMM-YYYY WW',
+					  calendarTodayLabel: 'today',
 					},
-					validation: (Rule) => Rule.required(),
-				 },
+					validation: (Rule) =>
+						Rule.required().custom((date, { document }) => {
+							const selectedWeekNumber = getWeekNumber(date);
+
+							if (selectedWeekNumber === document.weekNumber) {
+								return true;
+							} else {
+								return 'Du kan bare legge inn dato for uke ' + document.weekNumber;
+							}
+						}),
+						}
 			  ],
 			  preview: {
 				 select: {
@@ -56,11 +70,11 @@ export default {
 		 ],
 		 validation: (Rule) => Rule.required(),
 	  },
-	  {
-		 title: 'Paid',
-		 name: 'paid',
-		 type: 'boolean',
-	  },
+		{
+		  title: 'Paid',
+		  name: 'paid',
+		  type: 'boolean',
+		},
 	],
 	preview: {
 	  select: {
@@ -72,6 +86,11 @@ export default {
 		return {
 			title: `${username} - Week ${weekNumber}`,
 		 }
-	  },
+		},
 	},
- }
+	initialValue: () => ({
+		paid: false,
+		weekNumber: getWeekNumber(new Date()),
+	}),
+
+};
