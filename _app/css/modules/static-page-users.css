@@ -31,6 +31,7 @@
 
 .static-page-users__week-number {
 	font-weight: 600;
+	text-align: left;
 }
 
 .static-page-users__earnings {
@@ -38,10 +39,22 @@
 	padding-top: 0;
 }
 
-.static-page-users__tasks-list-item {
-	font-size: 0.9rem;
+.static-page-users__performed-tasks-list {
+	display: none;
 }
 
+.static-page-users__performed-tasks-list--visible {
+	display: block;
+}
+
+.static-page-users__performed-tasks-list-item {
+	font-size: 0.9rem;
+	text-align: left;
+}
+
+.static-page-users__task-date {
+	text-align: right;
+}
 .static-page-users__task-value {
 	font-weight: 600;
 }
