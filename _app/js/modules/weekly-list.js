@@ -65,8 +65,8 @@ export default async function WeeklyList() {
 		tasksList.className = 'static-page-users__tasks-list';
 		earningsItem.className = 'static-page-users__earnings box';
 		
-		weekNumber.textContent = `Week ${weeklyListOfPerformedTask.weekNumber}`;
-		earningsItem.textContent = `Total earning this week: ${earnings.toString()}`;
+		weekNumber.textContent = `Uke ${weeklyListOfPerformedTask.weekNumber}`;
+		earningsItem.textContent = `Du har tjent ${earnings.toString()} kroner denne uken`;
 		
 		weekList.appendChild(weekNumber);
 		weekList.appendChild(earningsItem);
