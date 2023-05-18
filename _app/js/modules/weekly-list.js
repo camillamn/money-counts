@@ -98,7 +98,7 @@ export default async function WeeklyList() {
 	// total earnings
 	const totalEarningsItem = document.createElement('div');
 	totalEarningsItem.className = 'static-page-users__total-earnings grid__column--12 box';
-	totalEarningsItem.textContent = `Total earnings: ${totalEarnings}`;
+	totalEarningsItem.textContent = `Totalt har du tjent ${totalEarnings} kroner i år`;
 	weeklyListContainer.appendChild(totalEarningsItem);
 
 	return weeklyListContainer;
