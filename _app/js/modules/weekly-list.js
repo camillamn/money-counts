@@ -1,11 +1,14 @@
 /** 
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+ * 
  * @TODO - need to fetch userAlt as well
- *  - change button to div, because its not allowed to have a a and button together
+ * 		- add errormessage if the slug is not to be found
 */
 
 import FetchWeeklyList from './fetch-weekly-lists.js';
 import { sumEarnings } from './calculate-earnings.js';
 import { readSlug } from '../util/read-slug.js';
+import formatDate from '../util/format-date.js';
 
 export default async function WeeklyList() {
 
@@ -20,22 +23,22 @@ export default async function WeeklyList() {
 
 	const weeklyListContainer = document.querySelector('.static-page-users');
 
-	let currentUser = '';
+	let currentUser = null;
 	let weekList = null;
-	let totalEarnings = 0;
+	let totalEarnings = null;
 
 	for (const weeklyListOfPerformedTask of filteredWeeklyList) {
 		if (currentUser !== weeklyListOfPerformedTask.user.username) {
 			currentUser = weeklyListOfPerformedTask.user.username;
 
-			const userInfo = document.createElement('a');
+			const userInfo = document.createElement('div');
 			const userImage = document.createElement('figure');
 			const userImg = document.createElement('img');
 			const userName = document.createElement('div');
 			
 			weekList = document.createElement('ul');
 
-			userInfo.className = 'static-page-users__user-information grid__column--4 box';
+			userInfo.className = 'static-page-users__user-information grid__column--6 box';
 			userImage.className = 'static-page-users__user-image';
 			userImg.className = 'static-page-users__user-img';
 			
@@ -58,18 +61,17 @@ export default async function WeeklyList() {
 		const earningsItem = document.createElement('div');
 
 		const earnings = sumEarnings(weeklyListOfPerformedTask.tasks);
-		console.log(typeof earnings, earnings);
 		totalEarnings += earnings;
 
 		weekNumber.className = 'static-page-users__week-number grid__column--12 box';
-		tasksList.className = 'static-page-users__tasks-list';
-		earningsItem.className = 'static-page-users__earnings box';
+		tasksList.className = 'static-page-users__tasks-list box';
+		earningsItem.className = 'static-page-users__earnings';
 		
 		weekNumber.textContent = `Uke ${weeklyListOfPerformedTask.weekNumber}`;
 		earningsItem.textContent = `Du har tjent ${earnings.toString()} kroner denne uken`;
 		
 		weekList.appendChild(weekNumber);
-		weekList.appendChild(earningsItem);
+		// weekList.appendChild(earningsItem);
 		
 		for (const task of weeklyListOfPerformedTask.tasks) {
 			
@@ -79,12 +81,12 @@ export default async function WeeklyList() {
 			const taskValue = document.createElement('div');
 			
 			taskListItem.className = 'static-page-users__tasks-list-item grid';
-			taskDate.className = 'static-page-users__task-date grid__column--3';
-			taskName.className = 'static-page-users__task-name grid__column--8';
-			taskValue.className = 'static-page-users__task-value grid__column--1';
+			taskDate.className = 'static-page-users__task-date grid__column--4 grid__column-mobile--4';
+			taskName.className = 'static-page-users__task-name grid__column--7 grid__column-mobile--7';
+			taskValue.className = 'static-page-users__task-value grid__column--1 grid__column-mobile--1';
 			
 			taskName.textContent = task.task.name;
-			taskDate.textContent = task.date;
+			taskDate.textContent = formatDate(task.date);
 			taskValue.textContent = task.task.value;
 
 			tasksList.appendChild(taskListItem);
@@ -94,6 +96,7 @@ export default async function WeeklyList() {
 		}
 		
 		weekNumber.appendChild(tasksList);
+		weekNumber.appendChild(earningsItem);
 	}
 	// total earnings
 	const totalEarningsItem = document.createElement('div');
