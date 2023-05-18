@@ -65,8 +65,8 @@ export default async function WeeklyList() {
 		tasksList.className = 'static-page-users__tasks-list';
 		earningsItem.className = 'static-page-users__earnings box';
 		
-		weekNumber.textContent = `Week ${weeklyListOfPerformedTask.weekNumber}`;
-		earningsItem.textContent = `Total earning this week: ${earnings.toString()}`;
+		weekNumber.textContent = `Uke ${weeklyListOfPerformedTask.weekNumber}`;
+		earningsItem.textContent = `Du har tjent ${earnings.toString()} kroner denne uken`;
 		
 		weekList.appendChild(weekNumber);
 		weekList.appendChild(earningsItem);
@@ -98,7 +98,7 @@ export default async function WeeklyList() {
 	// total earnings
 	const totalEarningsItem = document.createElement('div');
 	totalEarningsItem.className = 'static-page-users__total-earnings grid__column--12 box';
-	totalEarningsItem.textContent = `Total earnings: ${totalEarnings}`;
+	totalEarningsItem.textContent = `Totalt har du tjent ${totalEarnings} kroner i år`;
 	weeklyListContainer.appendChild(totalEarningsItem);
 
 	return weeklyListContainer;
