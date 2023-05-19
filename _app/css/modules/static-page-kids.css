@@ -1,60 +1,60 @@
-.static-page-users {
+.static-page-kids {
 	margin-bottom: var(--gap-row);
 	justify-content: space-between;
 	background-color: var(--color-button-task);
 	
 }
 
-.static-page-users__user-information {
+.static-page-kids__user-information {
 	background-color: grey;
 	/* display: flex;
 	flex-direction: row;
 	justify-content: center; */
 }
 
-.static-page-users__user-name {
+.static-page-kids__user-name {
 	background-color: blue;
 }
 
-.static-page-users__user-image {
+.static-page-kids__user-image {
 	aspect-ratio: 3/4;
 }
 
-.static-page-users__user-img {
+.static-page-kids__user-img {
 	object-fit: cover;
 	height: 100%;
 }
 
-.static-page-users__week-list {
+.static-page-kids__week-list {
 	background-color: bisque;
 }
 
-.static-page-users__week-number {
+.static-page-kids__week-number {
 	font-weight: 600;
 	text-align: left;
 }
 
-.static-page-users__earnings {
+.static-page-kids__earnings {
 	font-size: 0.95rem;
 	padding-top: 0;
 }
 
-.static-page-users__performed-tasks-list {
+.static-page-kids__performed-tasks-list {
 	display: none;
 }
 
-.static-page-users__performed-tasks-list--visible {
+.static-page-kids__performed-tasks-list--visible {
 	display: block;
 }
 
-.static-page-users__performed-tasks-list-item {
+.static-page-kids__performed-tasks-list-item {
 	font-size: 0.9rem;
 	text-align: left;
 }
 
-.static-page-users__task-date {
+.static-page-kids__task-date {
 	text-align: right;
 }
-.static-page-users__task-value {
+.static-page-kids__task-value {
 	font-weight: 600;
 }

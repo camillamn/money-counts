@@ -27,7 +27,7 @@ export default async function WeeklyList() {
 		return null;
 	}
 
-	const weeklyListContainer = document.querySelector('.static-page-users');
+	const weeklyListContainer = document.querySelector('.static-page-kids');
 
 
 	for (const weeklyListOfPerformedTask of filteredWeeklyList) {
@@ -42,12 +42,12 @@ export default async function WeeklyList() {
 			
 			weekList = document.createElement('ul');
 
-			userInfo.className = 'static-page-users__user-information grid__column--6 box';
-			userImage.className = 'static-page-users__user-image';
-			userImg.className = 'static-page-users__user-img';
+			userInfo.className = 'static-page-kids__user-information grid__column--6 box';
+			userImage.className = 'static-page-kids__user-image';
+			userImg.className = 'static-page-kids__user-img';
 			
-			userName.className = 'static-page-users__user-name grid__column--12 box';
-			weekList.className = 'static-page-users__week-list grid';
+			userName.className = 'static-page-kids__user-name grid__column--12 box';
+			weekList.className = 'static-page-kids__week-list grid';
 
 			userName.innerText = weeklyListOfPerformedTask.user.username;
 			userImg.src = weeklyListOfPerformedTask.userAvatar;
@@ -67,9 +67,9 @@ export default async function WeeklyList() {
 		const earnings = sumEarnings(weeklyListOfPerformedTask.tasks);
 		totalEarnings += earnings;
 
-		weekNumber.className = 'static-page-users__week-number grid__column--12 box';
-		performedTasksList.className = 'static-page-users__performed-tasks-list box';
-		earningsItem.className = 'static-page-users__earnings';
+		weekNumber.className = 'static-page-kids__week-number grid__column--12 box';
+		performedTasksList.className = 'static-page-kids__performed-tasks-list box';
+		earningsItem.className = 'static-page-kids__earnings';
 		
 		weekNumber.textContent = `Uke ${weeklyListOfPerformedTask.weekNumber} --- Du har tjent ${earnings.toString()} kroner`;
 		// earningsItem.textContent = `Du har tjent ${earnings.toString()} kroner denne uken`;
@@ -86,10 +86,10 @@ export default async function WeeklyList() {
 			const taskName = document.createElement('div');
 			const taskValue = document.createElement('div');
 			
-			taskListItem.className = 'static-page-users__performed-tasks-list-item grid';
-			taskDate.className = 'static-page-users__task-date grid__column--3 grid__column-mobile--3';
-			taskName.className = 'static-page-users__task-name grid__column--8 grid__column-mobile--8';
-			taskValue.className = 'static-page-users__task-value grid__column-1 grid__column-mobile--1';
+			taskListItem.className = 'static-page-kids__performed-tasks-list-item grid';
+			taskDate.className = 'static-page-kids__task-date grid__column--3 grid__column-mobile--3';
+			taskName.className = 'static-page-kids__task-name grid__column--8 grid__column-mobile--8';
+			taskValue.className = 'static-page-kids__task-value grid__column-1 grid__column-mobile--1';
 			
 			taskName.textContent = task.task.name;
 			taskDate.textContent = formatDate(task.date);
@@ -106,7 +106,7 @@ export default async function WeeklyList() {
 
 	// total earnings
 	const totalEarningsItem = document.createElement('div');
-	totalEarningsItem.className = 'static-page-users__total-earnings grid__column--12 box';
+	totalEarningsItem.className = 'static-page-kids__total-earnings grid__column--12 box';
 	totalEarningsItem.textContent = `Totalt har du tjent ${totalEarnings} kroner i år`;
 	weeklyListContainer.appendChild(totalEarningsItem);
 
