@@ -11,6 +11,8 @@
  * 
  */
 
+import { sanity } from "../../_app/js/sanity.js";
+
 export function getWeekNumber(date) {
 	const currentDate = new Date(date);
 	// sets the time to midnight
@@ -30,3 +32,17 @@ export function getWeekNumber(date) {
 
 	return weekNumber;
 }
+
+
+// prevent the user from creating more than one list per week
+export async function validateWeeklyListCreation(userRef, weekNumber) {
+	const query = `
+	*[_type == 'weeklyList' && user._ref == $userRef && weekNumber == $weekNumber][0]`;
+
+	const existingWeeklyList = await sanity.fetch(query, { userRef, weekNumber });
+
+	if (existingWeeklyList) {
+		throw new Error(`You already have a list for the week ${weekNumber}`)
+	}
+		return true;
+	}
