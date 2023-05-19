@@ -1,4 +1,4 @@
-import { getWeekNumber } from "../utils.js";
+import { getWeekNumber, validateWeeklyListCreation } from "../utils.js";
 
 export default {
 	title: 'Weekly list',
@@ -18,6 +18,18 @@ export default {
 		type: 'number',
 		initialValue: () => ({
 			weekNumber: getWeekNumber(new Date()),
+		 }),
+		validation: (Rule) =>
+		 Rule.required().custom(async (weekNumber, {document }) => {
+			const userRef = document.user._ref;
+
+			try {
+				await validateWeeklyListCreation(userRef, weekNumber);
+				return true;
+			} catch (error) {
+				return error.message;
+			}
+
 		 }),
 	 },
 	  {
