@@ -17,6 +17,11 @@ export default {
 			}
 		},
 		{
+			title: 'Description',
+			name: 'description',
+			type: 'text',
+		},
+		{
 			title: 'Value',
 			description: 'Value in NOK',
 			name: 'value',
