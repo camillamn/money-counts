@@ -1,7 +1,3 @@
-/**
- * @TODO split desk tool into settings and other documents
- **/
-
 export default {
 		title: 'Settings',
 		name: 'settings',
