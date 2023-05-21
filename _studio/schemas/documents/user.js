@@ -20,13 +20,13 @@ export default {
 			title: 'Username',
 			name: 'username',
 			type: 'string',
-			validation: (Rule) => Rule.required(),
+			validation: Rule => Rule.required(),
 		},
 		{
 			title: 'Password',
 			name: 'password',
 			type: 'string',
-			validation: (Rule) => Rule.required(),
+			validation: Rule => Rule.required(),
 		},
 		{
 			title: 'Role',
@@ -41,13 +41,13 @@ export default {
 	],
 	preview: {
 		select: {
-			username: 'username',
+			name: 'name',
 			avatar: 'avatar',
 		},
 
 		prepare: (fields) => {
 			return {
-				title: fields.username,
+				title: fields.name,
 				media: fields.avatar,
 			}
 		},
