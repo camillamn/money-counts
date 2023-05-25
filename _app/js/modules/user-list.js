@@ -1,14 +1,10 @@
 import FetchUsers from './fetch-users.js';
 
-export default async function UserList() {
-
+export default async function UserList(slug) {
 	// fetch the users
 	const users = await FetchUsers();
 	
-	function createUserItemDOM() {
-		const userListContainer = document.querySelector('.frontpage-users');
-
-		for (const user of users) {
+	function createUserItemDOM(user) {
 			const userItem = document.createElement('div');
 			const userImage = document.createElement('figure');
 			const userImg = document.createElement('img');
@@ -21,26 +17,27 @@ export default async function UserList() {
 			
 			userImage.className = 'frontpage-users__user-image';
 			userImg.className = 'frontpage-users__user-img';
-			userImg.src = user.userAvatar;
-			userImg.alt = user.userAlt;
-			
 			userInformation.className = 'frontpage-users__user-information box';
 			userName.className = 'frontpage-users__user-name';
+			userLink.className = 'frontpage-users__user-choose-me';
+			
+			userImg.src = user.userAvatar;
+			userImg.alt = user.userAlt;
+
 			userName.innerText = user.username
+
+			userLink.setAttribute('href', `/kids/?${user.slug.current}`);
+			userLink.textContent = 'Til min side';
 			// userEarning.className = 'frontpage-users__user-earning';
 			// userEarning.innerText = `NOK`
 			
-			userLink.className = 'frontpage-users__user-choose-me';
-			userLink.setAttribute('href', `/kids/?${user.slug.current}`);
-			userLink.textContent = 'Velg meg';
-			
-			userListContainer.appendChild(userItem);
+			userImage.appendChild(userImg);
 
 			userItem.appendChild(userImage);
 			userItem.appendChild(userInformation);
 			userItem.appendChild(userLink);
 
-			userImage.appendChild(userImg);
+			// userListContainer.appendChild(userItem);
 
 			userInformation.appendChild(userName);
 			// userInformation.appendChild(userEarning);
@@ -49,15 +46,25 @@ export default async function UserList() {
 				event.preventDefault();
 				window.location.href = userLink.href;
 			});
-
+			
+			return userItem;
 		}
-		return userListContainer;
-	}
+		function renderHTML() {
+			const userListContainer = document.querySelector('.frontpage-users');
 
-	function renderHTML() {
-		const userListContainer = createUserItemDOM();
-		document.body.appendChild(userListContainer);
+			if (slug) {
+				const user = users.find(user => user.slug.current === slug);
+				if (user) {
+					const userContainer = createUserItemDOM(user);
+					userListContainer.appendChild(userContainer);
+				}
+			} else {
+				for (const user of users) {
+					const userContainer = createUserItemDOM(user);
+					userListContainer.appendChild(userContainer);
+				}
+			}
+			document.body.appendChild(userListContainer);
+		}
+		renderHTML();
 	}
-
-	renderHTML();
-}
