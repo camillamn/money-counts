@@ -8,16 +8,17 @@
  * 		- create the user no matter if there is a weeklyList of performed tasks or not
 */
 
+// import UserList from './user-list.js';
+// import { togglePerformedTasksList } from './toggle-performed-tasks-list.js';
+// import { createDropdownMenu } from './create-dropdown-menu.js';
+// import formatDate from '../util/format-date.js';
+// import { getWeekNumber } from '../../../_studio/schemas/utils.js';
 import FetchWeeklyLists from './fetch-weekly-lists.js';
-import UserList from './user-list.js';
 import { createUserInfo } from './create-user-info.js';
-import { togglePerformedTasksList } from './toggle-performed-tasks-list.js';
 import { sumEarnings } from './calculate-earnings.js';
 import { readSlug } from '../util/read-slug.js';
-import { createDropdownMenu } from './create-dropdown-menu.js';
-import formatDate from '../util/format-date.js';
-import { getWeekNumber } from '../../../_studio/schemas/utils.js';
 import createWeeklyListOfPerformedTasks from './create-weekly-list-of-performed-tasks.js';
+import AddTasksToWeeklyList from './add-tasks-to-weekly-list.js';
 
 export default async function WeeklyLists() {
 	const weeklyListsContainer = document.querySelector('.static-page-kids');
@@ -54,6 +55,20 @@ export default async function WeeklyLists() {
 			earnings
 		);
 		weeklyInfo.appendChild(performedTasksList);
+
+		// const taskButtonsContainer = document.querySelector('.static-page-kids__task-buttons-container');
+		const taskButtons = document.querySelectorAll('.static-page-kids__task-button');
+		taskButtons.forEach(button => {
+			button.addEventListener('click', handleTaskButtonClick);
+			});
+		
+		function handleTaskButtonClick(event) {
+			const button = event.currentTarget;
+			const taskId = button.dataset.taskId;
+			AddTasksToWeeklyList(currentUser, taskId, weeklyList.user_id, weeklyList.weekNumber);
+			console.log("Clicked on button. Current user:", currentUser, "Task ID",taskId);
+			};
+		
 		}
 	weeklyListsContainer.appendChild(weeklyInfo);
 }
