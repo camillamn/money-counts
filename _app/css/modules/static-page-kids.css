@@ -40,12 +40,12 @@
 }
 
 .static-page-kids__performed-tasks-list {
-	display: none;
+	padding-top: 0;
 }
 
-.static-page-kids__performed-tasks-list--visible {
+/* .static-page-kids__performed-tasks-list--visible {
 	display: block;
-}
+} */
 
 .static-page-kids__performed-tasks-list-item {
 	font-size: 0.9rem;
