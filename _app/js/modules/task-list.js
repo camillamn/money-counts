@@ -1,3 +1,6 @@
+/**
+ * https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
+ */
 import FetchTasks from "./fetch-tasks.js";
 import { toggleTaskButtons } from "./toggle-task-buttons.js";
 
@@ -6,37 +9,39 @@ export default async function TaskList() {
 	console.log(tasks);
 
 	function createTaskItemDOM() {
-		const taskListContainer = document.querySelector('.static-page-kids__tasks');
-		const addTaskButton = document.createElement('button');
-		const taskButtonsContainer = document.createElement('div');
+		const taskButtonsContainer = document.querySelector('.static-page-kids__task-buttons-container');
+		const openTaskButtonsList = document.createElement('button');
+		const taskButtonsList = document.createElement('div');
 
-		taskButtonsContainer.className = 'static-page-kids__task-buttons-container';
+		openTaskButtonsList.className = 'static-page-kids__open-task-buttons-list';
+		taskButtonsList.className = 'static-page-kids__task-buttons-list';
 
-		addTaskButton.addEventListener('click', () => {
-			toggleTaskButtons(taskButtonsContainer);
+		openTaskButtonsList.addEventListener('click', () => {
+			toggleTaskButtons(taskButtonsList);
 		});
 
 		for (const task of tasks) {
 			const taskButton = document.createElement('button');
 
-			taskButton.className = 'static-page-kids__tasks-task-button box';
+			taskButton.className = 'static-page-kids__task-button box';
 			taskButton.innerText = `${task.name} ${task.value} kroner`;
+			taskButton.dataset.taskId = task._id;
 
-			taskButtonsContainer.appendChild(taskButton);
+			taskButtonsList.appendChild(taskButton);
 		}
 
-		addTaskButton.innerText = 'Legg til oppgave';
-		addTaskButton.className = 'static-page-kids__tasks-add-task';
+		openTaskButtonsList.innerText = 'Legg til oppgave';
+		openTaskButtonsList.className = 'static-page-kids__tasks-add-task';
 
-		taskListContainer.appendChild(addTaskButton);
-		taskListContainer.appendChild(taskButtonsContainer);
+		taskButtonsContainer.appendChild(openTaskButtonsList);
+		taskButtonsContainer.appendChild(taskButtonsList);
 
-		return taskListContainer
+		return taskButtonsContainer
 	}
 
 	function renderHTML() {
-		const taskListContainer = createTaskItemDOM();
-		document.body.appendChild(taskListContainer);
+		const taskButtonsContainer = createTaskItemDOM();
+		document.body.appendChild(taskButtonsContainer);
 	}
 	renderHTML();
 }
