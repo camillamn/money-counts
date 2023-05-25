@@ -2,23 +2,23 @@
 
 } */
 
-.static-page-kids__tasks-task {
+/* .static-page-kids__tasks-task {
 	display: none;
 }
 
 .static-page-kids__tasks-task--visible {
 	display: block;
-}
+} */
 
-.static-page-kids__tasks-task-button {
+.static-page-kids__task-button {
 	background-color: aquamarine;
 	border-radius: 20px;
 }
 
-.static-page-kids__task-buttons-container {
+.static-page-kids__task-buttons-list {
 	display: none;
 }
 
-.static-page-kids__task-buttons-container--visible {
+.static-page-kids__task-buttons-list--visible {
 	display: block;
 }

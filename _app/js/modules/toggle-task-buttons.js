@@ -1,7 +1,7 @@
-export function toggleTaskButtons(taskButtonsContainer) {
-	if (taskButtonsContainer.classList.contains('static-page-kids__task-buttons-container--visible')) {
-		taskButtonsContainer.classList.remove('static-page-kids__task-buttons-container--visible');
+export function toggleTaskButtons(taskButtonsList) {
+	if (taskButtonsList.classList.contains('static-page-kids__task-buttons-list--visible')) {
+		taskButtonsList.classList.remove('static-page-kids__task-buttons-list--visible');
 	} else {
-		taskButtonsContainer.classList.add('static-page-kids__task-buttons-container--visible');
+		taskButtonsList.classList.add('static-page-kids__task-buttons-list--visible');
 	}
 }
