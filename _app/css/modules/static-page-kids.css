@@ -27,6 +27,11 @@
 
 .static-page-kids__week-list {
 	background-color: bisque;
+	display: none;
+}
+.static-page-kids__week-list--visible {
+	background-color: bisque;
+	display: block;
 }
 
 .static-page-kids__week-number {
