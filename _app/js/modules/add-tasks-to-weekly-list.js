@@ -18,6 +18,7 @@ export default async function AddTasksToWeeklyList(currentUser, taskId, userId, 
 		try {
 			const weeklyLists = await FetchWeeklyLists();
 
+			// fetch the active list from weekly-list
 			const currentUserWeeklyList = weeklyLists.find(weeklyList => 
 				weeklyList.user.username === currentUser && 
 				weeklyList.weekNumber === weekNumber

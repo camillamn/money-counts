@@ -4,7 +4,7 @@ export function createUserInfo(username, userAvatar) {
 	const userImg = document.createElement('img');
 	const userName = document.createElement('div');
 
-	userInfo.className = 'static-page-kids__user-information grid__column--6 box';
+	userInfo.classList.add('static-page-kids__user-information', 'grid__column--3', 'box');
 	userImage.className = 'static-page-kids__user-image';
 	userImg.className = 'static-page-kids__user-img';
 
