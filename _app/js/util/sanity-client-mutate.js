@@ -37,12 +37,20 @@ export function SanityClient(config) {
 		}
 
 		const response = await fetch(request_url, request_options);
+		console.log(response);
 		const response_body = await response.json();
+		console.log(response_body);
 
-		if (response.status < 400) {
+		if (response.ok) {
 			return response_body;
-		} else {
-			throw new Error(response_body.error.description);
+		} else if (response.status === 404) {
+			throw new Error('Url not found');
+	  } else if (response.status === 401) {
+			throw new Error('Not authorized user');
+	  } else if (response.status >= 500) {
+			throw new Error('Server error');
+	  } else {
+			throw new Error(response_body.error?.description || 'Unknown error');
 		}
 	}
 
@@ -83,8 +91,14 @@ export function SanityClient(config) {
 
 		if (response.ok) {
 			return response_body.result;
-		} else {
-			throw new Error(response_body.message || response_body.error.description);
+		} else if (response.status === 404) {
+			throw new Error('Url not found');
+	  } else if (response.status === 401) {
+			throw new Error('Not authorized user');
+	  } else if (response.status >= 500) {
+			throw new Error('Server error');
+	  } else {
+			throw new Error(response_body.message || response_body.error?.description || 'Unknown error');
 		}
 	}
 
