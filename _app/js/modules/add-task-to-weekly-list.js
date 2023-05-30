@@ -9,7 +9,7 @@ import FetchWeeklyLists from "./fetch-weekly-lists.js";
 
 export default async function addTaskToWeeklyList(taskId) {
 	// model
-	const selectedWeeklyListId = document.querySelector('.static-page-kids__select-week-number').value;
+	const selectedWeeklyListId = document.querySelector('.dynamic-page-kids__select-week-number').value;
 
 		try {
 			// fetch weekly lists from the model and 
