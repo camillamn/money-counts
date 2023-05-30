@@ -7,5 +7,5 @@
 @import 'modules/box.css';
 @import 'modules/main-header.css';
 @import 'modules/frontpage-users.css';
-@import 'modules/static-page-kids.css';
-@import 'modules/static-page-tasks.css';
+@import 'modules/dynamic-page-kids.css';
+@import 'modules/dynamic-page-tasks.css';
