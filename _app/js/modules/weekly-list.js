@@ -12,11 +12,10 @@
 // import { getWeekNumber } from '../../../_studio/schemas/utils.js';
 import FetchWeeklyLists from './fetch-weekly-lists.js';
 import { createUserInfo } from './create-user-info.js';
-import { sumEarnings } from './calculate-earnings.js';
+import { sumEarnings } from '../util/calculate-earnings.js';
 import { readSlug } from '../util/read-slug.js';
 import createWeeklyListOfPerformedTasks from './create-weekly-list-of-performed-tasks.js';
 import { getWeekNumber } from '../../../_studio/schemas/utils.js';
-// import AddTasksToWeeklyList from './add-tasks-to-weekly-list.js';
 
 export default async function WeeklyLists() {
 	// import all the weekly lists
@@ -30,37 +29,39 @@ export default async function WeeklyLists() {
 
 	function createWeeklyListContainerDOM() {
 		// set the container element
-		const weeklyListsContainer = document.querySelector('.static-page-kids');
+		const weeklyListsContainer = document.querySelector('.dynamic-page-kids');
 
 		// create the container children
 		const userInfo = document.createElement('section');
 		const weeklyInfo = document.createElement('section');
 		
 		userInfo.classList.add(
-			'static-page-kids__user-information', 
+			'dynamic-page-kids__user-information', 
 			'grid__column--6', 
 			'box'
 		);
 
 		weeklyInfo.classList.add(
-			'static-page-kids__weekly-information', 
+			'dynamic-page-kids__weekly-information', 
 			'grid__column--6', 
 			'box'
 		);
 
 		// create the dropdown container
 		const dropdownContainer = document.createElement('div');
-			dropdownContainer.classList.add(
-				'static-page-kids__week-number-dropdown', 
-				'grid__column--19', 
-				'box'
-			);
+		dropdownContainer.classList.add(
+			'dynamic-page-kids__week-number-dropdown', 
+			'grid__column--19', 
+			'box'
+		);
 		
+		// create the select week element
 		const selectWeekNumber = document.createElement('select');
 			selectWeekNumber.classList.add(
-				'static-page-kids__select-week-number'
+				'dynamic-page-kids__select-week-number'
 			);
 		
+		// create a 
 		const defaultOption = document.createElement('option');
 			defaultOption.textContent = `Velg ukenummer`;
 			defaultOption.selected = true;
@@ -95,7 +96,12 @@ export default async function WeeklyLists() {
 		// get the week numbers and year from the weekly lists and add them to the dropdown options
 		const weekNumbers = filteredWeeklyListsBySlug.map((weeklyList) => {
 			const tasks = weeklyList.tasks;
-			const year = tasks.length > 0 ? new Date(tasks[0].date).getFullYear() : new Date().getFullYear();
+			let year;
+			if( tasks && tasks.length > 0) {
+				year = new Date(tasks[0].date).getFullYear()
+			} else {
+				year = new Date().getFullYear()
+			}
 			return {
 				weekNumber: weeklyList.weekNumber,
 				year: year
@@ -115,7 +121,6 @@ export default async function WeeklyLists() {
 				if (weekData.weekNumber === currentWeek) {
 					option.selected = true;
 				}
-				console.log(currentWeek)
 			selectWeekNumber.appendChild(option);
 		});
 
@@ -127,7 +132,7 @@ export default async function WeeklyLists() {
 					selectedWeekNumber = filteredWeeklyListsBySlug.find(
 						(weeklyList) => weeklyList.weekNumber === currentWeek)?._id;
 				}
-				const weeklyListContainer = document.querySelector('.static-page-kids__weekly-list');
+				const weeklyListContainer = document.querySelector('.dynamic-page-kids__weekly-list');
 
 				if (weeklyListContainer) {
 					weeklyListContainer.remove();
@@ -149,16 +154,17 @@ export default async function WeeklyLists() {
 					selectWeekNumber.addEventListener('change', (event) => {
 						selectedWeekNumber = event.target.value;
 						updateFilteredWeeklyListsBySlug(selectedWeekNumber);
-						console.log(selectedWeekNumber);
+						console.log(`Selected weekNumberID: ${selectedWeekNumber}`);
 					});
-
-				updateFilteredWeeklyListsBySlug(selectedWeekNumber);
+					const eventChange = new Event('change');
+					selectWeekNumber.dispatchEvent(eventChange);
+					
+					updateFilteredWeeklyListsBySlug(selectedWeekNumber);
 
 				return weeklyListsContainer;
 			
 		}	
 		function renderHTML() {
-			console.log('rendering HTML...');
 			const weeklyListsContainer = createWeeklyListContainerDOM();
 			document.body.appendChild(weeklyListsContainer);
 			}
