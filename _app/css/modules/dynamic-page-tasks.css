@@ -1,0 +1,24 @@
+/* .dynamic-page-kids__tasks {
+
+} */
+
+/* .dynamic-page-kids__tasks-task {
+	display: none;
+}
+
+.dynamic-page-kids__tasks-task--visible {
+	display: block;
+} */
+
+.dynamic-page-kids__task-button {
+	background-color: aquamarine;
+	border-radius: 20px;
+}
+
+.dynamic-page-kids__task-buttons-list {
+	display: none;
+}
+
+.dynamic-page-kids__task-buttons-list--visible {
+	display: block;
+}
