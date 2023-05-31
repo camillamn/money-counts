@@ -1,8 +1,13 @@
+/**
+ * Fetches the admin users from the database
+ * @returns {Promise<Array<object>>} - A promise that returns an array of admin user objects
+ */
+
 import { sanity } from '../sanity.js';
 
 export default async function FetchAdmin() {
 
-	// fetch the users with role "admin"
+	// define the query to fetch the admin users
    const query = `*[_type == 'user' && role == 'admin'] | order(name asc) {
 		username,
 		slug,

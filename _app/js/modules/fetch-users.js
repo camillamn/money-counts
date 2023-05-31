@@ -1,8 +1,13 @@
+/**
+ * Fetches the list of all users with role user in the database
+ * @returns {Promise<Array<object>>} - A promise that returns an array of user objects
+ */
+
 import { sanity } from '../sanity.js';
 
 export default async function FetchUsers() {
 
-	// fetch the users with role "user" and not "admin"
+	// define the query to fetch all users with role user
    const query = `*[_type == 'user' && role == 'user'] | order(name asc) {
 		username,
 		slug,
@@ -13,8 +18,6 @@ export default async function FetchUsers() {
 	
    // fetch users from the sanity database using query
    const users = await sanity.fetch(query);
-
-   console.log(users)
 
 	return users;
 }

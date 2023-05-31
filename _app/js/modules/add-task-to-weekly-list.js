@@ -1,5 +1,9 @@
 /**
- * used this to learn more about how to add tasks at the and of an array
+ * The function adds a task to the selected weekly list.
+ * @param {string} taskId - ID of the task that should be added.
+ * @returns {Promise<void} - Resolves when the task is successfully added to the list.
+ * 
+ * I used this to learn more about how to add tasks at the and of an array
  * https://www.sanity.io/docs/http-patches
  */
 
@@ -8,16 +12,16 @@ import { generateUniqueKey } from "../util/generate-unique-key.js";
 import FetchWeeklyLists from "./fetch-weekly-lists.js";
 
 export default async function addTaskToWeeklyList(taskId) {
-	// model
+	// get the ID of the selected weekly list
 	const selectedWeeklyListId = document.querySelector('.dynamic-page-kids__select-week-number').value;
 
 		try {
-			// fetch weekly lists from the model and 
-			// find the selected weekly list amoung them
+			// fetch weekly lists from the API and find the selected weekly list amoung them
 			const weeklyLists = await FetchWeeklyLists();
 			const selectedWeeklyList = weeklyLists.find((list) => list._id === selectedWeeklyListId);
 
 			if (selectedWeeklyList) {
+				// get the current date and format it to fit sanity schema
 				const currentDate = new Date();
 				const formattedDate = currentDate.toISOString();
 
@@ -34,9 +38,9 @@ export default async function addTaskToWeeklyList(taskId) {
 				// create an array to store mutations to update the model
 				let mutations = [];
 
-				// check if there are tasks in the array or not
+				// check if there are tasks in the selected week or not
 				if (selectedWeeklyList.tasks && selectedWeeklyList.tasks.length > 0) {
-					// insert newTask after the last task in the array
+					// insert the new task after the last task in the array
 					const insertMutation = {
 						'patch': {
 							id: selectedWeeklyList._id,
@@ -47,8 +51,7 @@ export default async function addTaskToWeeklyList(taskId) {
 						},
 					};
 					mutations.push(insertMutation);
-					// if no array of tasks yet(it's empty), 
-					// set the array with the new task
+					// if no tasks exist yet, set the array with the new task
 					} else {
 					const setMutation = {
 						patch: {
@@ -59,8 +62,8 @@ export default async function addTaskToWeeklyList(taskId) {
 					mutations.push(setMutation);
 				}
 				
-				// set to true to test the mutation, it will return the document with
-				// mutations, only in the console, without affecting the real document
+				// set dryRun to true to test the mutation, it will return the document with
+				// mutations in the console, without affecting the real document
 				const params = {
 					dryRun: false
 				};
