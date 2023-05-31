@@ -13,13 +13,27 @@ export default async function UserList(slug) {
 			const userLink = document.createElement('a');
 			// const userEarning = document.createElement('div');
 
-			userItem.className = 'frontpage-users__user box grid__column--4';
-			
-			userImage.className = 'frontpage-users__user-image';
-			userImg.className = 'frontpage-users__user-img';
-			userInformation.className = 'frontpage-users__user-information box';
-			userName.className = 'frontpage-users__user-name';
-			userLink.className = 'frontpage-users__user-choose-me';
+			userItem.classList.add(
+				'frontpage-users__user', 
+				'box', 
+				'grid__column--4',
+			);
+			userImage.classList.add(
+				'frontpage-users__user-image'
+			);
+			userImg.classList.add(
+				'frontpage-users__user-img'
+			);
+			userInformation.classList.add(
+				'frontpage-users__user-information', 
+				'box'
+			);
+			userName.classList.add(
+				'frontpage-users__user-name'
+			);
+			userLink.classList.add(
+				'frontpage-users__user-choose-me'
+			);
 			
 			userImg.src = user.userAvatar;
 			userImg.alt = user.userAlt;
@@ -36,8 +50,6 @@ export default async function UserList(slug) {
 			userItem.appendChild(userImage);
 			userItem.appendChild(userInformation);
 			userItem.appendChild(userLink);
-
-			// userListContainer.appendChild(userItem);
 
 			userInformation.appendChild(userName);
 			// userInformation.appendChild(userEarning);

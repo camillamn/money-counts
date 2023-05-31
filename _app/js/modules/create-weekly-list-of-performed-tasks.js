@@ -11,12 +11,27 @@ export default function createWeeklyListOfPerformedTasks(weeklyList, earnings, w
 	const earningsItem = document.createElement('div');
 	const weeklyListOfPerformedTasks = document.createElement('div');
 	
-	weekNumber.className = 'dynamic-page-kids__week-number grid__column--8 box';
-	paidOrNot.className = 'dynamic-page-kids__week-paid-or-not grid__column--6'
-	performedTasksList.className = 'dynamic-page-kids__performed-tasks-list box';
-	earningsItem.className = 'dynamic-page-kids__earnings box';
-	weeklyListOfPerformedTasks.className = 'dynamic-page-kids__weekly-list box';
-
+	weekNumber.classList.add(
+		'dynamic-page-kids__week-number', 
+		'grid__column--8', 
+		'box'
+	);
+	paidOrNot.classList.add(
+		'dynamic-page-kids__week-paid-or-not', 
+		'grid__column--6'
+	);
+	performedTasksList.classList.add(
+		'dynamic-page-kids__performed-tasks-list', 
+		'box'
+	);
+	earningsItem.classList.add(
+		'dynamic-page-kids__earnings', 
+		'box'
+	);
+	weeklyListOfPerformedTasks.classList.add(
+		'dynamic-page-kids__weekly-list', 
+		'box'
+	);
 	
 	weekNumber.textContent = `Uke ${weeklyList.weekNumber}`;
 	earningsItem.textContent = `Du har tjent ${earnings.toString()} kroner denne uken`;
@@ -29,10 +44,25 @@ export default function createWeeklyListOfPerformedTasks(weeklyList, earnings, w
 			const taskName = document.createElement('div');
 			const taskValue = document.createElement('div');
 			
-			taskListItem.className = 'dynamic-page-kids__performed-tasks-list-item grid';
-			taskDate.className = 'dynamic-page-kids__task-date grid__column--3 grid__column-mobile--3';
-			taskName.className = 'dynamic-page-kids__task-name grid__column--8 grid__column-mobile--8';
-			taskValue.className = 'dynamic-page-kids__task-value grid__column-1 grid__column-mobile--1';
+			taskListItem.classList.add(
+				'dynamic-page-kids__performed-tasks-list-item', 
+				'grid'
+			);
+			taskDate.classList.add(
+				'dynamic-page-kids__task-date', 
+				'grid__column--3', 
+				'grid__column-mobile--3'
+			);
+			taskName.classList.add(
+				'dynamic-page-kids__task-name', 
+				'grid__column--8',
+				'grid__column-mobile--8',
+			);
+			taskValue.classList.add(
+				'dynamic-page-kids__task-value', 
+				'grid__column-1',
+				'grid__column-mobile--1'
+			);
 			
 			taskName.textContent = task.task.name;
 			taskDate.textContent = formatDateToFrontend(task.date);
@@ -51,7 +81,13 @@ export default function createWeeklyListOfPerformedTasks(weeklyList, earnings, w
 		weeklyListOfPerformedTasks.appendChild(performedTasksList);
 	} else {
 		const noTasksMessage = document.createElement('div');
+
+		noTasksMessage.classList.add(
+			'dynamic-page-kids__no-tasks-message',
+			'box'
+		);
 		noTasksMessage.textContent = 'Du har ikke lagt til noen oppgaver denne uken';
+
 		weeklyListOfPerformedTasks.appendChild(weekNumber);
 		weeklyListOfPerformedTasks.appendChild(noTasksMessage);
 	}
