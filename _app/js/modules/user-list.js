@@ -1,9 +1,22 @@
+/**
+ * UserList(slug)
+ * Renders a list if of users with their information and link to their individual page
+ * @param {string} slug - The slug of a specific user
+ * 
+ * createUserItemDOM(user)
+ * Creates a DOm element for a user item
+ * @param {object} user - The user object with user information
+ * @returns {HTMLElement} - The DOM element for the user item
+ * 
+ */
+
 import FetchUsers from './fetch-users.js';
 
 export default async function UserList(slug) {
-	// fetch the users
+	// fetch the users with role user from the database
 	const users = await FetchUsers();
 	
+	// create the DOM elements
 	function createUserItemDOM(user) {
 			const userItem = document.createElement('div');
 			const userImage = document.createElement('figure');
@@ -13,6 +26,7 @@ export default async function UserList(slug) {
 			const userLink = document.createElement('a');
 			// const userEarning = document.createElement('div');
 
+			// add CSS classes to the elements
 			userItem.classList.add(
 				'frontpage-users__user', 
 				'box', 
@@ -35,6 +49,7 @@ export default async function UserList(slug) {
 				'frontpage-users__user-choose-me'
 			);
 			
+			// set the text content and source of the elements
 			userImg.src = user.userAvatar;
 			userImg.alt = user.userAlt;
 
@@ -45,15 +60,16 @@ export default async function UserList(slug) {
 			// userEarning.className = 'frontpage-users__user-earning';
 			// userEarning.innerText = `NOK`
 			
-			userImage.appendChild(userImg);
 
+			// append the child elements to the parent element
+			userImage.appendChild(userImg);
 			userItem.appendChild(userImage);
 			userItem.appendChild(userInformation);
 			userItem.appendChild(userLink);
-
 			userInformation.appendChild(userName);
 			// userInformation.appendChild(userEarning);
 
+			// handle click event to go to the user page based on slug
 			userLink.addEventListener('click', (event) => {
 				event.preventDefault();
 				window.location.href = userLink.href;
@@ -61,20 +77,12 @@ export default async function UserList(slug) {
 			
 			return userItem;
 		}
+		// renders the user list by creating the DOM elements and append them to the document body
 		function renderHTML() {
 			const userListContainer = document.querySelector('.frontpage-users');
-
-			if (slug) {
-				const user = users.find(user => user.slug.current === slug);
-				if (user) {
-					const userContainer = createUserItemDOM(user);
-					userListContainer.appendChild(userContainer);
-				}
-			} else {
-				for (const user of users) {
-					const userContainer = createUserItemDOM(user);
-					userListContainer.appendChild(userContainer);
-				}
+			for (const user of users) {
+				const userContainer = createUserItemDOM(user);
+				userListContainer.appendChild(userContainer);
 			}
 			document.body.appendChild(userListContainer);
 		}
