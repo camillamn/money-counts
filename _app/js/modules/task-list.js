@@ -41,6 +41,9 @@ export default async function TaskList() {
 					
 					const response = await addTaskToWeeklyList(taskId);
 					console.log(response);
+
+					// reload the page after clicking on a button to update the list
+					location.reload();
 				} catch (error) {
 					console.error('An error occurred while sending the post request');
 				}
