@@ -16,7 +16,8 @@ export default async function TaskList() {
 
 		openTaskButtonsList.classList.add(
 			'dynamic-page-kids__open-task-buttons-list',
-			'grid');
+			'grid'
+		);
 		taskButtonsList.classList.add('dynamic-page-kids__task-buttons-list');
 
 		openTaskButtonsList.addEventListener('click', () => {
@@ -29,7 +30,8 @@ export default async function TaskList() {
 			taskButton.classList.add(
 				'dynamic-page-kids__task-button',
 				'grid__column--3', 
-				'box');
+				'box'
+			);
 			taskButton.innerText = `${task.name} ${task.value} kroner`;
 			taskButton.dataset.taskId = task._id;
 
@@ -53,8 +55,9 @@ export default async function TaskList() {
 		}
 
 		openTaskButtonsList.innerText = 'Legg til oppgave';
-		openTaskButtonsList.className = 'dynamic-page-kids__tasks-add-task';
-
+		openTaskButtonsList.classList.add(
+			'dynamic-page-kids__tasks-add-task'
+		);
 		taskButtonsContainer.appendChild(openTaskButtonsList);
 		taskButtonsContainer.appendChild(taskButtonsList);
 
