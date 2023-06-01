@@ -46,17 +46,18 @@ export default async function WeeklyLists() {
 		);
 		weeklyInfo.classList.add(
 			'dynamic-page-kids__weekly-information', 
-			'grid__column--6', 
+			'grid__column--8', 
 			'box'
 		);
 		dropdownContainer.classList.add(
 			'dynamic-page-kids__week-number-dropdown', 
-			'grid__column--19', 
-			'box'
+			'grid__column--4', 
 		);
 		selectWeekNumber.classList.add(
-			'dynamic-page-kids__select-week-number'
+			'dynamic-page-kids__select-week-number',
+			'box',
 		);
+
 
 		// create a default option in the select element
 		defaultOption.textContent = `Velg ukenummer`;
@@ -81,8 +82,8 @@ export default async function WeeklyLists() {
 				currentUser = weeklyList.user.username;
 				
 				const userInfo = createUserInfo(
-					weeklyList.user.username, 
-					weeklyList.userAvatar
+					weeklyList.user.username,
+					weeklyList.userAvatar,
 				);
 				weeklyListsContainer.appendChild(userInfo);
 			}

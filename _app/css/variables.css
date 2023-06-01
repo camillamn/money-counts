@@ -4,14 +4,17 @@
 
 	--color-button-choose-task: var(var(--color-foreground));
 	--color-button-task: #34568B;
+	--color-button-task-hover: #1f3354;
 	--color-button-font: #FFFFFF;
 
-	--font-size-button: 1rem;
-	--font-size-list-item: 0.8rem;
-	--font-size-foreground: 1.5rem;
+	--font-size-list-item: 85%;
+	--font-size-button: 100%;
+	--font-size-earnings: 120%;
+	--font-size-foreground: 150%;
+	--font-size-header: 200%;
 
 	--font-family-main: 'Comfortaa', cursive;
-	--font-family-header: 'Lakki Reddy', cursive;
+	--font-family-header: 'Hachi Maru Pop', cursive;
 
 	--gap-column: 1rem;
 	--gap-padding: 1rem;
@@ -19,6 +22,6 @@
 	--gap-section: 2rem;
 
 	--gap-box-padding: 1rem;
+	--gap-bottom-padding: 0.2rem;
 	--gap-button-padding: 0.5rem;
-
 }

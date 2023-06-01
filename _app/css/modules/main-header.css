@@ -1,4 +1,15 @@
+/* mobile first */
 .main-header {
 	margin-bottom: var(--gap-row);
-	font-size: 2rem;
+	font-family: var(--font-family-header);
+	font-size: var(--font-size-header);
+	justify-items: center;
+}
+
+/* desktop */
+@media screen and (min-width: 1024px) {
+	.main-header {
+		font-size: var(--font-size-header);
+		justify-items: start;
+	}
 }

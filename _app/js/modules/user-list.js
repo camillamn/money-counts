@@ -1,10 +1,9 @@
 /**
- * UserList(slug)
- * Renders a list if of users with their information and link to their individual page
- * @param {string} slug - The slug of a specific user
+ * UserList()
+ * Renders a list if of users with their information and link to their individual page.
  * 
  * createUserItemDOM(user)
- * Creates a DOm element for a user item
+ * Creates a DOM element for a user item
  * @param {object} user - The user object with user information
  * @returns {HTMLElement} - The DOM element for the user item
  * 
@@ -12,78 +11,77 @@
 
 import FetchUsers from './fetch-users.js';
 
-export default async function UserList(slug) {
+export default async function UserList() {
 	// fetch the users with role user from the database
 	const users = await FetchUsers();
 	
 	// create the DOM elements
 	function createUserItemDOM(user) {
-			const userItem = document.createElement('div');
+
+			const userContent = document.createElement('article');
 			const userImage = document.createElement('figure');
 			const userImg = document.createElement('img');
-			const userInformation = document.createElement('div');
-			const userName = document.createElement('div');
+			// const userName = document.createElement('h3');
 			const userLink = document.createElement('a');
-			// const userEarning = document.createElement('div');
 
 			// add CSS classes to the elements
-			userItem.classList.add(
-				'frontpage-users__user', 
-				'box', 
+			userContent.classList.add(
+				'frontpage-users__user-content',
 				'grid__column--4',
-			);
+				'box',
+			)
 			userImage.classList.add(
-				'frontpage-users__user-image'
+				'frontpage-users__user-image',
 			);
 			userImg.classList.add(
 				'frontpage-users__user-img'
 			);
-			userInformation.classList.add(
-				'frontpage-users__user-information', 
-				'box'
-			);
-			userName.classList.add(
-				'frontpage-users__user-name'
-			);
+			// userName.classList.add(
+			// 	'frontpage-users__user-name',
+			// 	'box',
+			// );
 			userLink.classList.add(
-				'frontpage-users__user-choose-me'
+				'frontpage-users__user-choose-me',
+				'box',
 			);
 			
 			// set the text content and source of the elements
 			userImg.src = user.userAvatar;
 			userImg.alt = user.userAlt;
 
-			userName.innerText = user.username
+			// userName.innerText = user.username
 
 			userLink.setAttribute('href', `/kids/?${user.slug.current}`);
-			userLink.textContent = 'Til min side';
-			// userEarning.className = 'frontpage-users__user-earning';
-			// userEarning.innerText = `NOK`
-			
+			userLink.textContent = `Til ${user.username} sin side`;
 
 			// append the child elements to the parent element
 			userImage.appendChild(userImg);
-			userItem.appendChild(userImage);
-			userItem.appendChild(userInformation);
-			userItem.appendChild(userLink);
-			userInformation.appendChild(userName);
-			// userInformation.appendChild(userEarning);
+			userContent.appendChild(userImage);
+			// userContent.appendChild(userName);
+			userContent.appendChild(userLink);
 
 			// handle click event to go to the user page based on slug
-			userLink.addEventListener('click', (event) => {
+			userContent.addEventListener('click', (event) => {
 				event.preventDefault();
 				window.location.href = userLink.href;
 			});
 			
-			return userItem;
+			return userContent;
 		}
 		// renders the user list by creating the DOM elements and append them to the document body
 		function renderHTML() {
 			const userListContainer = document.querySelector('.frontpage-users');
+			const userItem = document.createElement('section');
+			userItem.classList.add(
+				'frontpage-users__user',
+				'grid',
+			);
+
 			for (const user of users) {
 				const userContainer = createUserItemDOM(user);
-				userListContainer.appendChild(userContainer);
+				userItem.appendChild(userContainer);
 			}
+			userListContainer.appendChild(userItem)
 			document.body.appendChild(userListContainer);
 		}
 		renderHTML();
