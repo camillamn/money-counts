@@ -5,8 +5,11 @@
  * Date.getFullYear - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getFullYear
  * Set - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Set
  * 
- * @TODO - need to fetch userAlt as well
- * 		- add errormessage if the slug is not to be found
+ * @TODO 
+ * - need to fetch userAlt as well
+ * - add errormessage if the slug is not to be found
+ * - fix the "reload" function so that it's possible to get the information from the console
+ *   before reload. I've tried with setTimeOut but it didn't gave me the effect i wanted.
 */
 
 // import { getWeekNumber } from '../../../_studio/schemas/utils.js';
