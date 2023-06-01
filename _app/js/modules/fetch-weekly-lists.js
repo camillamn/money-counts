@@ -1,12 +1,6 @@
-/**
- * Fetches the list of all weekly lists in the database
- * @returns {Promise<Array<object>>} - A promise that returns an array of all the weekly list objects
- */
-
 import { sanity } from '../sanity.js';
 
 export default async function FetchWeeklyLists() {
-	// define the query to fetch all lists
 	const query = `*[_type == 'weeklyList'] | order(weekNumber asc, tasks.date asc) {
 		_id,
 		weekNumber,
@@ -20,11 +14,13 @@ export default async function FetchWeeklyLists() {
 				name,
 			  	value
 			}
-		 } | order(date asc)
+		 } | order(date desc)
 	  }`;
 
 	// fetch weekly-lists sorted by weekNumber from sanity
 	const weeklyListsOfPerformedTasks = await sanity.fetch(query);
+
+	// console.log(weeklyListOfPerformedTasks)
 
 	return weeklyListsOfPerformedTasks;
 }
