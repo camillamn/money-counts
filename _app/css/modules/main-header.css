@@ -2,14 +2,18 @@
 .main-header {
 	margin-bottom: var(--gap-row);
 	font-family: var(--font-family-header);
-	font-size: var(--font-size-header);
 	justify-items: center;
+}
+
+.main-header__logo {
+	font-size: var(--font-size-header);
+	
 }
 
 /* desktop */
 @media screen and (min-width: 1024px) {
 	.main-header {
-		font-size: var(--font-size-header);
 		justify-items: start;
 	}
+	
 }

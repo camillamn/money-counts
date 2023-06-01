@@ -68,6 +68,11 @@
 
 /* desktop */
 @media screen and (min-width: 1024px) {
+
+	.dynamic-page-kids {
+		align-items: center;
+	}
+
 	.dynamic-page-kids__week-number-dropdown {
 		width: 100%;
 	}
