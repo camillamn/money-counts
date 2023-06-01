@@ -25,10 +25,12 @@ export default async function TaskList() {
 		// add CSS classes to the elements
 		openTaskButtonsList.classList.add(
 			'dynamic-page-kids__open-task-buttons-list',
-			'grid'
+			'grid__column--12',
+			'box',
 		);
 		taskButtonsList.classList.add(
-			'dynamic-page-kids__task-buttons-list'
+			'dynamic-page-kids__task-buttons-list',
+			'grid__column--12',
 		);
 
 		// toggle visibility of task buttonw when the "open" button is clicked
@@ -42,10 +44,13 @@ export default async function TaskList() {
 
 			taskButton.classList.add(
 				'dynamic-page-kids__task-button',
-				'grid__column--3', 
-				'box'
+				'grid__column--6',
+				'box',
 			);
-			taskButton.innerText = `${task.name} ${task.value} kroner`;
+			taskButton.innerText = 
+				`${task.name} 
+				${task.value} kroner
+				`;
 			taskButton.dataset.taskId = task._id;
 
 			// handle click event for adding tasks to the weekly list
@@ -76,7 +81,7 @@ export default async function TaskList() {
 		);
 
 		// set the text content of the elements
-		openTaskButtonsList.innerText = 'Legg til oppgave';
+		openTaskButtonsList.innerText = 'Klikk her for å legge til oppgaver';
 
 		// add child elements to the task buttons container
 		taskButtonsContainer.appendChild(openTaskButtonsList);
