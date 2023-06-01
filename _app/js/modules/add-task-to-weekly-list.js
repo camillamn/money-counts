@@ -15,68 +15,68 @@ export default async function addTaskToWeeklyList(taskId) {
 	// get the ID of the selected weekly list
 	const selectedWeeklyListId = document.querySelector('.dynamic-page-kids__select-week-number').value;
 
-		try {
-			// fetch weekly lists from the API and find the selected weekly list amoung them
-			const weeklyLists = await FetchWeeklyLists();
-			const selectedWeeklyList = weeklyLists.find((list) => list._id === selectedWeeklyListId);
+	try {
+		// fetch weekly lists from the API and find the selected weekly list amoung them
+		const weeklyLists = await FetchWeeklyLists();
+		const selectedWeeklyList = weeklyLists.find((list) => list._id === selectedWeeklyListId);
 
-			if (selectedWeeklyList) {
-				// get the current date and format it to fit sanity schema
-				const currentDate = new Date();
-				const formattedDate = currentDate.toISOString();
+		if (selectedWeeklyList) {
+			// get the current date and format it to fit sanity schema
+			const currentDate = new Date();
+			const formattedDate = currentDate.toISOString();
 
-				// create a new task object to add to the array
-				const newTask = {
-					_key: generateUniqueKey(),
-					task: {
-						_ref: taskId,
-						_type: 'reference'
-					},
-					date: formattedDate
-				};
+			// create a new task object to add to the array
+			const newTask = {
+				_key: generateUniqueKey(),
+				task: {
+					_ref: taskId,
+					_type: 'reference'
+				},
+				date: formattedDate
+			};
 
-				// create an array to store mutations to update the model
-				let mutations = [];
+			// create an array to store mutations to update the model
+			let mutations = [];
 
-				// check if there are tasks in the selected week or not
-				if (selectedWeeklyList.tasks && selectedWeeklyList.tasks.length > 0) {
-					// insert the new task after the last task in the array
-					const insertMutation = {
-						'patch': {
-							id: selectedWeeklyList._id,
-							insert: {
-								after: 'tasks[-1]',
-								items: [newTask],
-							},
+			// check if there are tasks in the selected week or not
+			if (selectedWeeklyList.tasks && selectedWeeklyList.tasks.length > 0) {
+				// insert the new task after the last task in the array
+				const insertMutation = {
+					'patch': {
+						id: selectedWeeklyList._id,
+						insert: {
+							after: 'tasks[-1]',
+							items: [newTask],
 						},
-					};
-					mutations.push(insertMutation);
-					// if no tasks exist yet, set the array with the new task
-					} else {
-					const setMutation = {
-						patch: {
-							id: selectedWeeklyList._id,
-							set: { tasks: [newTask] }
-						}
-					};
-					mutations.push(setMutation);
-				}
-				
-				// set dryRun to true to test the mutation, it will return the document with
-				// mutations in the console, without affecting the real document
-				const params = {
-					dryRun: false
+					},
 				};
-				
-				const result = await sanity.mutate(mutations, params);
-				console.log(result);
-			} else {
-				console.error('Selected weekly list is not found');
+				mutations.push(insertMutation);
+				// if no tasks exist yet, set the array with the new task
+				} else {
+				const setMutation = {
+					patch: {
+						id: selectedWeeklyList._id,
+						set: { tasks: [newTask] }
+					}
+				};
+				mutations.push(setMutation);
 			}
-
-		} catch(error) {
-			// handle error if it occurs during the process
-			console.error(error.message);
-			throw error;
+			
+			// set dryRun to true to test the mutation, it will return the document with
+			// mutations in the console, without affecting the real document
+			const params = {
+				dryRun: false
+			};
+			
+			const result = await sanity.mutate(mutations, params);
+			console.log(result);
+		} else {
+			console.error('Selected weekly list is not found');
 		}
+
+	} catch(error) {
+		// handle error if it occurs during the process
+		console.error(error.message);
+		throw error;
 	}
+}
