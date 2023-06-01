@@ -3,27 +3,25 @@
  * @param {object} weeklyList - The weekly list object with the information about the week's tasks.
  * @param {number} earnings - The total earnings for a week.
  * @returns {HTMLElement} - The created weekly list of performed tasks element.
+ * 
+ * Reference:
+ * Conditional operator - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
  */
 
 import { formatDateToFrontend } from '../util/format-date.js';
 
 export default function createWeeklyListOfPerformedTasks(weeklyList, earnings) {
 	// create the DOM elements
-	const weekNumber = document.createElement('div');
 	const paidOrNot = document.createElement('div');
 	const performedTasksList = document.createElement('div');
 	const earningsItem = document.createElement('div');
 	const weeklyListOfPerformedTasks = document.createElement('div');
 	
 	// add CSS classes to the elements
-	weekNumber.classList.add(
-		'dynamic-page-kids__week-number', 
-		'grid__column--8', 
-		'box'
-	);
 	paidOrNot.classList.add(
 		'dynamic-page-kids__week-paid-or-not', 
-		'grid__column--6'
+		'grid__column--6',
+		'box',
 	);
 	performedTasksList.classList.add(
 		'dynamic-page-kids__performed-tasks-list', 
@@ -35,16 +33,14 @@ export default function createWeeklyListOfPerformedTasks(weeklyList, earnings) {
 	);
 	weeklyListOfPerformedTasks.classList.add(
 		'dynamic-page-kids__weekly-list', 
-		'box'
 	);
-	
 
 	// set the text content of the elements
-	// used this to learn about conditional operator
-	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
-	weekNumber.textContent = `Uke ${weeklyList.weekNumber}`;
-	earningsItem.textContent = `Du har tjent ${earnings.toString()} kroner denne uken`;
-	paidOrNot.textContent = `${weeklyList.paid ? 'Pengene er vippset til din konto' : 'Ikke utbetalt enda'}`;
+	earningsItem.textContent = `Denne uken har du tjent ${earnings.toString()} kr`;
+	paidOrNot.textContent = `${weeklyList.paid ? 
+		'Pengene er vippset til din konto' : 
+		'Ikke utbetalt enda'
+	}`;
 	
 	if (weeklyList.tasks && weeklyList.tasks.length > 0) {
 		// create the performed task list item
@@ -66,19 +62,19 @@ export default function createWeeklyListOfPerformedTasks(weeklyList, earnings) {
 			);
 			taskName.classList.add(
 				'dynamic-page-kids__task-name', 
-				'grid__column--8',
-				'grid__column-mobile--8',
+				'grid__column--7',
+				'grid__column-mobile--7',
 			);
 			taskValue.classList.add(
 				'dynamic-page-kids__task-value', 
-				'grid__column-1',
-				'grid__column-mobile--1'
+				'grid__column--2',
+				'grid__column-mobile--2'
 			);
 			
 			// set the text content of the elements
 			taskName.textContent = task.task.name;
 			taskDate.textContent = formatDateToFrontend(task.date);
-			taskValue.textContent = task.task.value;
+			taskValue.textContent = `${task.task.value} kr`;
 			
 			// append the child elements to the parent element
 			taskListItem.appendChild(taskDate);
@@ -89,11 +85,11 @@ export default function createWeeklyListOfPerformedTasks(weeklyList, earnings) {
 			performedTasksList.appendChild(taskListItem);
 		}
 
-		weekNumber.appendChild(paidOrNot);
 		// append the child elements to the weekly list of performed tasks
-		weeklyListOfPerformedTasks.appendChild(weekNumber);
-		weeklyListOfPerformedTasks.appendChild(earningsItem);
+		// weeklyListOfPerformedTasks.appendChild(weekNumber);
 		weeklyListOfPerformedTasks.appendChild(performedTasksList);
+		weeklyListOfPerformedTasks.appendChild(earningsItem);
+		weeklyListOfPerformedTasks.appendChild(paidOrNot);
 	} else {
 		// create the no tasks message element
 		const noTasksMessage = document.createElement('div');
@@ -108,7 +104,7 @@ export default function createWeeklyListOfPerformedTasks(weeklyList, earnings) {
 		noTasksMessage.textContent = 'Du har ikke lagt til noen oppgaver denne uken';
 
 		// append the child elements to the weekly list of performed tasks
-		weeklyListOfPerformedTasks.appendChild(weekNumber);
+		// weeklyListOfPerformedTasks.appendChild(weekNumber);
 		weeklyListOfPerformedTasks.appendChild(noTasksMessage);
 	}
 	
