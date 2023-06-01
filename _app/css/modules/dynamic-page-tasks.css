@@ -1,18 +1,18 @@
-/* .dynamic-page-kids__tasks {
-
-} */
-
-/* .dynamic-page-kids__tasks-task {
-	display: none;
+/* mobile first */
+.dynamic-page-kids__open-task-buttons-list {
+	background-color: var(--color-foreground);
+	color: var(--color-button-font);
+	width: 100%;
 }
 
-.dynamic-page-kids__tasks-task--visible {
-	display: block;
-} */
-
 .dynamic-page-kids__task-button {
-	background-color: aquamarine;
-	border-radius: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--color-button-task);
+	border-radius: 10px;
+	color: var(--color-button-font);
+	letter-spacing: 5%;
 }
 
 .dynamic-page-kids__task-buttons-list {
@@ -20,5 +20,25 @@
 }
 
 .dynamic-page-kids__task-buttons-list--visible {
-	display: block;
+	width: 60%;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	justify-self: center;
+	row-gap: var(--gap-row);
+}
+
+/* desktop */
+@media screen and (min-width: 1042px) {
+	.dynamic-page-kids__task-button {
+		width: 100%;
+	}
+
+	.dynamic-page-kids__open-task-buttons-list:hover {
+		border: 2px solid black;
+	}
+
+	.dynamic-page-kids__task-button:hover {
+		background-color: var(--color-button-task-hover);
+	}
 }

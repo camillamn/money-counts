@@ -1,19 +1,33 @@
+/* mobile first */
 .dynamic-page-kids {
-	margin-bottom: var(--gap-row);
 	justify-content: space-between;
-	background-color: var(--color-button-task);
-	
+	row-gap: 0;
 }
 
 .dynamic-page-kids__user-information {
-	background-color: grey;
-	/* display: flex;
-	flex-direction: row;
-	justify-content: center; */
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-self: center;
+	padding-bottom: 0;
 }
 
 .dynamic-page-kids__user-name {
-	background-color: blue;
+	display: flex;
+	font-size: var(--font-size-foreground);
+	padding-bottom: 0;
+	justify-content: center;
+}
+
+.dynamic-page-kids__week-number-dropdown {
+	width: 100%;
+	background-color: var(--color-foreground);
+	color: var(--color-button-font);
+}
+
+.dynamic-page-kids__select-week-number {
+	width: 100%;
+	font-size: var(--font-size-button);
 }
 
 .dynamic-page-kids__user-image {
@@ -25,41 +39,40 @@
 	height: 100%;
 }
 
-.dynamic-page-kids__week-list {
-	background-color: bisque;
-	display: none;
-}
-.dynamic-page-kids__week-list--visible {
-	background-color: bisque;
-	display: block;
-}
-
-.dynamic-page-kids__week-number {
-	font-weight: 600;
-	text-align: left;
-}
-
 .dynamic-page-kids__earnings {
-	font-size: 0.95rem;
-	padding-top: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	font-size: var(--font-size-earnings);
+	border-style: dotted;
 }
 
-.dynamic-page-kids__performed-tasks-list {
-	padding-top: 0;
+.dynamic-page-kids__week-paid-or-not {
+	width: 100%;
+	text-align: end;
 }
-
-/* .dynamic-page-kids__performed-tasks-list--visible {
-	display: block;
-} */
 
 .dynamic-page-kids__performed-tasks-list-item {
-	font-size: 0.9rem;
-	text-align: left;
+	font-size: var(--font-size-list-item);
+	padding-bottom: var(--gap-bottom-padding);
 }
 
 .dynamic-page-kids__task-date {
 	text-align: right;
 }
 .dynamic-page-kids__task-value {
-	font-weight: 600;
+	text-align: right;
+}
+
+/* desktop */
+@media screen and (min-width: 1024px) {
+	.dynamic-page-kids__week-number-dropdown {
+
+		width: 100%;
+	}
+
+	.dynamic-page-kids__week-number-dropdown:hover {
+		background-color: var(--color-button-task-hover);
+		color: var(--color-button-font);
+	}
 }
