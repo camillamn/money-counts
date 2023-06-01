@@ -26,7 +26,7 @@ export default async function TaskList() {
 		openTaskButtonsList.classList.add(
 			'dynamic-page-kids__open-task-buttons-list',
 			'grid__column--12',
-			'box',
+			'box'
 		);
 		taskButtonsList.classList.add(
 			'dynamic-page-kids__task-buttons-list',
