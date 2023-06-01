@@ -12,6 +12,15 @@
 	padding-bottom: 0;
 }
 
+.dynamic-page-kids__user-image {
+	aspect-ratio: 3/4;
+}
+
+.dynamic-page-kids__user-img {
+	object-fit: cover;
+	height: 100%;
+}
+
 .dynamic-page-kids__user-name {
 	display: flex;
 	font-size: var(--font-size-foreground);
@@ -30,13 +39,18 @@
 	font-size: var(--font-size-button);
 }
 
-.dynamic-page-kids__user-image {
-	aspect-ratio: 3/4;
+
+.dynamic-page-kids__performed-tasks-list-item {
+	font-size: var(--font-size-list-item);
+	padding-bottom: var(--gap-bottom-padding);
 }
 
-.dynamic-page-kids__user-img {
-	object-fit: cover;
-	height: 100%;
+.dynamic-page-kids__task-date {
+	text-align: left;
+}
+
+.dynamic-page-kids__task-value {
+	text-align: right;
 }
 
 .dynamic-page-kids__earnings {
@@ -52,22 +66,9 @@
 	text-align: end;
 }
 
-.dynamic-page-kids__performed-tasks-list-item {
-	font-size: var(--font-size-list-item);
-	padding-bottom: var(--gap-bottom-padding);
-}
-
-.dynamic-page-kids__task-date {
-	text-align: right;
-}
-.dynamic-page-kids__task-value {
-	text-align: right;
-}
-
 /* desktop */
 @media screen and (min-width: 1024px) {
 	.dynamic-page-kids__week-number-dropdown {
-
 		width: 100%;
 	}
 
