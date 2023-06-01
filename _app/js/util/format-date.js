@@ -12,7 +12,7 @@
 export function formatDateToFrontend(date) {
 	const options = {
 		day: '2-digit',
-		month: 'long',
+		month: 'short',
 		year: 'numeric',
 	}
 	const formattedDateToFrontend = new Date(date).toLocaleDateString('no-NO', options);
