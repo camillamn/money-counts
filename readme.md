@@ -30,3 +30,9 @@ The computer modeling is made with [dbdiagram](https://dbdiagram.io/d/64422a836b
 
 ## Further plan
 My plan is to develope the application further so that each kid have their own page, created based on slugs, and that they can add tasks to the weekly list by choosing from a list of tasks. They should also have the possibility to see what they have done and earned in the previous weeks, and if the pocket money have been paid or not. I would like to have a separate page for the admin user to see all the weekly lists sorted by user and a checkbox to check when the weekly earnings has been paid.
+
+## License
+This project is licensed under the MIT License.
+
+## Additional information
+For any questions or issues, please open an issue on the [GitHub repository](https://github.com/camillamn/money-counts/issues) or contact the author directly.
